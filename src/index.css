@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-dark font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.magnetic-btn {
+  @apply relative overflow-hidden transition-transform duration-300;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.magnetic-btn:hover {
+  @apply scale-[1.03];
+}
+
+.magnetic-btn::before {
+  content: "";
+  @apply absolute inset-0 bg-dark md:translate-y-[100%] transition-transform duration-500 ease-out z-[-1];
+}
+
+.magnetic-btn:hover::before {
+  @apply md:translate-y-0;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.animate-scan {
+  animation: scan 3s linear infinite;
+}
+
+@keyframes pulse-path {
+  0% {
+    stroke-dashoffset: 200;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: -200;
+    opacity: 0;
+  }
+}
+
+.animate-pulse-path {
+  animation: pulse-path 2.5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 20s linear infinite;
+}
